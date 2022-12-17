@@ -29,6 +29,8 @@ const Auth = () => {
   const [password, setPassword] = useState(mode === "dev" ? "secret" : "");
 
   useEffect(() => {
+    /* removes all heatmap popups */
+    document.body.querySelectorAll("div.usage-detail-container.pop-up").forEach((node) => node.remove());
     userService.doSignOut().catch();
   }, []);
 
@@ -165,7 +167,7 @@ const Auth = () => {
           </div>
           {!systemStatus?.host && <p className="tip-text">{t("auth.host-tip")}</p>}
         </div>
-        <div className="w-full flex flex-row justify-center items-center gap-2">
+        <div className="flex flex-row items-center justify-center w-full gap-2">
           <Select
             className="!min-w-[9rem] w-auto whitespace-nowrap"
             startDecorator={<Icon.Globe className="w-4 h-auto" />}
